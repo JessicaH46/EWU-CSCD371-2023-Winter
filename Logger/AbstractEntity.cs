@@ -11,6 +11,15 @@ namespace Logger
 		}
 
 		string IEntity.Name { get; set; }
+        Guid IEntity.Id { get => throw new NotImplementedException(); init => throw new NotImplementedException(); }
+    }
+
+	public class Books : AbstractEntity
+	{
+		public Books(Guid? id, string title, string author, string ISBN )
+		{
+			//
+		}
 	}
 }
 
