@@ -9,4 +9,7 @@
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="EmptyClass.csproj" />
+  </ItemGroup>
 </Project>
