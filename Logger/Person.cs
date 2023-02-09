@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Logger
+{
+    public record class Person(NameRecords FullName) : AbstractEntity
+    {
+        public override string Name => FullName.ToString();
+    }
+}

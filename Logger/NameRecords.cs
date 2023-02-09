@@ -1,13 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace Logger
 {
-	public readonly struct NameRecords
+    public readonly record struct NameRecords(string firstName, string lastName, string? middleName = null)
 	{
-		public string FirstName { get; }
-		public string LastName { get; }
-		public string MiddleName { get; }
+		public string FirstName { get;} = firstName ?? throw new ArgumentNullException(nameof(firstName));
+		public string LastName { get; } = lastName ?? throw new ArgumentNullException(nameof(lastName));
+		public string? MiddleName { get; } = middleName;
+
+		public override string ToString()
+		{
+			if(middleName == null)
+			{
+				return firstName + " " + lastName;
+
+            }
+			else
+			{
+                return firstName + " " + middleName + " " + lastName;
+            }
+		}
 
 		/*
 		 We want to compare these with value types instead of reference type, due to the possibility that
@@ -19,13 +33,6 @@ namespace Logger
 		 This is readonly so the type should be immutable, because the properties can't change after
 		 they have been set
 		*/
-		public NameRecords(string FirstNameX, string LastNameX, string? MiddleNameX = null)
-        {
-            FirstName = FirstNameX ?? throw new ArgumentNullException(nameof(FirstNameX));
-            LastName = LastNameX ?? throw new ArgumentNullException(nameof(LastName));
-			MiddleName = MiddleNameX ?? throw new ArgumentNullException(nameof(MiddleNameX));
-
-        }
     }
 }
 
