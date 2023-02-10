@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Logger
 {
-    public record class Employee(NameRecords FullName, string Role) : Person(FullName)
+    public record class Book(string Title, NameRecords Author) : AbstractEntity
     {
+        public override string Name => Title + " - " + Author;
     }
 }
