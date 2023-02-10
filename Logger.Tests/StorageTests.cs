@@ -12,6 +12,7 @@ public class StorageTests
 
         public string Name => throw new NotImplementedException();
     }
+
     [TestMethod]
     public void AddTest()
     {
@@ -21,6 +22,47 @@ public class StorageTests
         storage.Add(entity);
 
         Assert.IsTrue(storage.Contains(entity));
+
+    }
+
+    [TestMethod]
+    public void RemoveTest()
+    {
+        var storage = new Storage();
+        var entity = new Entity { Id = Guid.NewGuid() };
+
+        storage.Remove(entity);
+
+        Assert.IsFalse(storage.Contains(entity));
+
+    }
+
+    [TestMethod]
+    public void GetTest()
+    {
+        var storage = new Storage();
+        var entity = new Entity { Id = Guid.NewGuid() };
+
+        storage.Add(entity);
+
+        var res = storage.Get(entity.Id);
+
+        Assert.AreEqual(entity, res);
+
+    }
+
+    [TestMethod]
+    public void GetTestWhenItIsNull()
+    {
+        var storage = new Storage();
+        var entity = new Entity { Id = Guid.NewGuid() };
+
+        storage.Add(entity);
+
+        var res = storage.Get(Guid.NewGuid());
+
+        Assert.IsNull(res);
+
     }
 
 }
