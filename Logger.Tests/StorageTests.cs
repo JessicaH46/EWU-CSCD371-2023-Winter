@@ -38,6 +38,32 @@ public class StorageTests
     }
 
     [TestMethod]
+    public void ContainsTestReturnsTrue()
+    {
+        var storage = new Storage();
+        var entity = new Entity { Id = Guid.NewGuid() };
+
+        storage.Add(entity);
+
+        var res = storage.Contains(entity);
+
+        Assert.IsTrue(res);
+
+    }
+
+    [TestMethod]
+    public void ContainsTestReturnsFalse()
+    {
+        var storage = new Storage();
+        var entity = new Entity { Id = Guid.NewGuid() };
+
+        var res = storage.Contains(entity);
+
+        Assert.IsFalse(res);
+
+    }
+
+    [TestMethod]
     public void GetTest()
     {
         var storage = new Storage();
